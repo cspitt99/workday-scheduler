@@ -1,32 +1,41 @@
-//step 1: put current date using moment()
-//step 2: compare the current hour with time-blocks
-//step 2.5: translate time from military time
-//step 3: use css classes for present, past, and future
-//step 4: grab the text area value and store it in local storage
-
 var timeBlocksArr = [9, 10, 11, 12, 13, 14, 15, 16, 17]
-
 var currenthour = moment().hour()
-
 var currentDay = $("#currentDay")
 
 var systemTime = moment().format("dddd, MMMM Do")
 currentDay.text(systemTime)
 
-function displayColor(){
-    for(var i=0; i < timeBlocksArr.length;i++){
-        var currentTextEl = $("#" +timeBlocksArr[i])
+function displayColor() {
+    for (var i = 0; i < timeBlocksArr.length; i++) {
+        var currentTextEl = $("#" + timeBlocksArr[i])
 
-        if(currenthour>timeBlocksArr[i]){
-           currentTextEl.addClass("past")
+        if (currenthour > timeBlocksArr[i]) {
+            currentTextEl.addClass("past")
         }
         else if (currenthour === timeBlocksArr[i]) {
-       currentTextEl.addClass("present")     
+            currentTextEl.addClass("present")
         }
-        else if(currenthour < timeBlocksArr[i]){
+        else if (currenthour < timeBlocksArr[i]) {
             currentTextEl.addClass("future")
         }
     }
 }
 
 displayColor()
+
+let textAreaEl = $("textarea");
+let saveBtn = $(".saveBtn");
+
+let planEvent = localStorage.getItem("input");
+
+function saveAndResetTextContent(event) {
+
+    let currentTxtArea = $(event.target).parents().children("div").children("textarea");
+    let inputEl = $('<p>');
+    let inputVal = currentTxtArea.val();
+
+    localStorage.setItem("input", inputVal);
+    inputEl.text(inputVal);
+    currentTxtArea.append(inputEl);
+
+}
