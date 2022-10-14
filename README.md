@@ -12,7 +12,7 @@ An application that can help the user organize their work day
 
 
 ## Installation
-  N/A
+  Here is my deployed link: https://cspitt99.github.io/workday-scheduler/
 
 ## Usage
   This will be used as an online scheduler for the user's work day
